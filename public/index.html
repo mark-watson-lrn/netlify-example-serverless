@@ -9,26 +9,44 @@
   <body>
     <h1>Up and Running with Serverless Functions</h1>
     <button id="fetch-btn">Fetch</button>
-    <button id="fetch-pokedex-btn">Fetch PokeDex</button>
+    <button id="fetch-kanto-btn">Fetch Kanto PokeDex</button>
+    <button id="fetch-hoenn-btn">Fetch Hoenn PokeDex</button>
     <p id="response-output">Response Placeholder</p>
 
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const fetchBtn = document.getElementById('fetch-btn');
-        const fetchPokeDex = document.getElementById('fetch-pokedex-btn');
+        const fetchKantoDex = document.getElementById('fetch-kanto-btn');
+        const fetchHoennDex = document.getElementById('fetch-hoenn-btn');
         const responseText = document.getElementById('response-output');
 
-          fetchPokeDex.addEventListener('click', async () => {
-              const poke = await fetch('/.netlify/functions/pokedex')
+          fetchKantoDex.addEventListener('click', async () => {
+              const poke = await fetch('/.netlify/functions/pokedex', {
+                method: 'POST',
+                body: JSON.stringify({
+                    region: 'kanto'
+                })
+              })
+                    .then(poke => poke.json());
+              responseText.innerText = JSON.stringify(poke);
+        });
+
+          fetchHoennDex.addEventListener('click', async () => {
+              const poke = await fetch('/.netlify/functions/pokedex', {
+                  method: 'POST',
+                  body: JSON.stringify({
+                      region: 'hoenn'
+                  })
+              })
                       .then(poke => poke.json());
               responseText.innerText = JSON.stringify(poke);
-        })
+          });
 
         fetchBtn.addEventListener('click', async () => {
             const response = await fetch('/.netlify/functions/hello-world')
                     .then(response => response.json())
           responseText.innerText = response.message;
-        })
+        });
       })
     </script>
   </body>
