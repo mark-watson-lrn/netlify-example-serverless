@@ -17,7 +17,7 @@
     "url": "https://github.com/mark-watson-lrn/netlify-example-serverless/issues"
   },
   "homepage": "https://github.com/mark-watson-lrn/netlify-example-serverless#readme",
-  "devDependencies": {
+  "dependencies": {
     "node-fetch": "^3.3.0"
   }
 }
