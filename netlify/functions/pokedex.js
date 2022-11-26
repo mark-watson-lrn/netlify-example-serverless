@@ -1,4 +1,7 @@
-
+// note: any node-fetch versions higher than v2.6.1 only support ESM
+// so you will get an error message saying you need to use import instead of
+// require
+const fetch = require('node-fetch');
 exports.handler = async function () {
     const POKE_API='https://pokeapi.co/api/v2/pokedex/kanto';
 
